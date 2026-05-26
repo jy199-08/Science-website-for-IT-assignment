@@ -1,0 +1,418 @@
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+:root {
+  --dark: #0d0f14;
+  --light: #f5f3ee;
+  --accent-physics: #3b82f6;
+  --accent-biology: #22c55e;
+  --accent-chemistry: #f97316;
+  --text: #1c1c1e;
+  --muted: #6b7280;
+  --card-bg: #ffffff;
+  --font-display: 'Playfair Display', Georgia, serif;
+  --font-body: 'DM Sans', sans-serif;
+}
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: var(--font-body);
+  background: var(--light);
+  color: var(--text);
+  overflow-x: hidden;
+}
+
+/* ── HERO ── */
+.hero {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  min-height: 600px;
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+}
+
+.hero-image-wrap {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+}
+
+.hero-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  display: block;
+}
+
+/* Left dark fade, right stays clear */
+.hero-fade {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to right,
+    rgba(0, 0, 0, 0.72) 0%,
+    rgba(0, 0, 0, 0.45) 35%,
+    rgba(0, 0, 0, 0.08) 65%,
+    rgba(0, 0, 0, 0) 100%
+  );
+}
+
+.hero-text {
+  position: relative;
+  z-index: 1;
+  max-width: 560px;
+  padding: 0 4rem;
+  animation: fadeUp 0.9s ease both;
+}
+
+.hero-eyebrow {
+  font-family: var(--font-body);
+  font-size: 0.8rem;
+  font-weight: 500;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.6);
+  margin-bottom: 1rem;
+}
+
+.hero-text h1 {
+  font-family: var(--font-display);
+  font-size: clamp(2.8rem, 6vw, 5rem);
+  font-weight: 900;
+  line-height: 1.05;
+  color: #ffffff;
+  margin-bottom: 1.2rem;
+}
+
+.hero-sub {
+  font-size: 1.05rem;
+  font-weight: 300;
+  color: rgba(255,255,255,0.75);
+  line-height: 1.7;
+  max-width: 400px;
+  margin-bottom: 2rem;
+}
+
+.hero-btn {
+  display: inline-block;
+  padding: 0.75rem 1.8rem;
+  border: 1.5px solid rgba(255,255,255,0.6);
+  color: #fff;
+  text-decoration: none;
+  font-size: 0.9rem;
+  font-weight: 500;
+  letter-spacing: 0.04em;
+  border-radius: 999px;
+  transition: background 0.2s, border-color 0.2s;
+}
+
+.hero-btn:hover {
+  background: rgba(255,255,255,0.15);
+  border-color: #fff;
+}
+
+/* ── TOPICS SECTION ── */
+.topics {
+  background: var(--light);
+  padding: 5rem 2rem 6rem;
+  text-align: center;
+}
+
+.section-label {
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin-bottom: 3rem;
+}
+
+.cards-row {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 2rem;
+  flex-wrap: wrap;
+}
+
+/* ── CARD ── */
+.card {
+  background: var(--card-bg);
+  border-radius: 20px;
+  width: 240px;
+  min-height: 360px;
+  padding: 2.2rem 1.8rem 1.8rem;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  box-shadow: 0 4px 24px rgba(0,0,0,0.07);
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+  animation: fadeUp 0.7s ease both;
+}
+
+.card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 12px 40px rgba(0,0,0,0.12);
+}
+
+/* Centre card is taller */
+.card.featured {
+  min-height: 420px;
+  padding-top: 2.8rem;
+  animation-delay: 0.1s;
+}
+
+#card-physics  { animation-delay: 0s;   border-top: 4px solid var(--accent-physics); }
+#card-biology  { animation-delay: 0.1s; border-top: 4px solid var(--accent-biology); }
+#card-chemistry{ animation-delay: 0.2s; border-top: 4px solid var(--accent-chemistry); }
+
+.card-icon {
+  font-size: 2rem;
+  margin-bottom: 1.2rem;
+}
+
+.card-title {
+  font-family: var(--font-display);
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--text);
+  margin-bottom: 0.8rem;
+  line-height: 1.2;
+}
+
+.card-desc {
+  font-size: 0.9rem;
+  color: var(--muted);
+  line-height: 1.7;
+  flex: 1;
+}
+
+.card-arrow {
+  margin-top: 1.6rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.88rem;
+  font-weight: 500;
+  text-decoration: none;
+  color: var(--text);
+  transition: gap 0.2s;
+}
+
+.card-arrow:hover { gap: 0.85rem; }
+
+#card-physics  .card-arrow { color: var(--accent-physics); }
+#card-biology  .card-arrow { color: var(--accent-biology); }
+#card-chemistry .card-arrow { color: var(--accent-chemistry); }
+
+/* ── FOOTER ── */
+.footer {
+  background: var(--dark);
+  color: #fff;
+  padding: 4rem 2rem 2.5rem;
+}
+
+.footer-inner {
+  max-width: 700px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.footer-quote {
+  margin-bottom: 2.5rem;
+}
+
+.quote-mark {
+  font-family: var(--font-display);
+  font-size: 4rem;
+  line-height: 0.5;
+  color: rgba(255,255,255,0.15);
+  display: block;
+  margin-bottom: 0.5rem;
+}
+
+.footer-quote p {
+  font-family: var(--font-display);
+  font-size: 1.15rem;
+  font-style: italic;
+  color: rgba(255,255,255,0.85);
+  line-height: 1.7;
+  max-width: 520px;
+  margin: 0 auto 0.8rem;
+}
+
+.footer-quote cite {
+  font-size: 0.82rem;
+  color: rgba(255,255,255,0.4);
+  font-style: normal;
+  letter-spacing: 0.05em;
+}
+
+.footer-divider {
+  width: 40px;
+  height: 1px;
+  background: rgba(255,255,255,0.15);
+  margin: 0 auto 2.5rem;
+}
+
+.footer-label {
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.35);
+  margin-bottom: 0.6rem;
+}
+
+.footer-phone {
+  display: block;
+  font-family: var(--font-display);
+  font-size: 1.6rem;
+  font-weight: 700;
+  color: #fff;
+  text-decoration: none;
+  margin-bottom: 0.6rem;
+  letter-spacing: -0.02em;
+  transition: color 0.2s;
+}
+
+.footer-phone:hover { color: var(--accent-biology); }
+
+.footer-tagline {
+  font-size: 0.88rem;
+  color: rgba(255,255,255,0.4);
+  font-style: italic;
+  margin-bottom: 2.5rem;
+}
+
+.footer-copy {
+  font-size: 0.75rem;
+  color: rgba(255,255,255,0.2);
+  letter-spacing: 0.04em;
+}
+
+/* ── ANIMATIONS ── */
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(24px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* ── TOPIC PAGES (physics/biology/chemistry.html) ── */
+.page-header {
+  background: var(--dark);
+  padding: 1.2rem 2rem;
+  display: flex;
+  align-items: center;
+  gap: 1.2rem;
+}
+
+.back-link {
+  color: rgba(255,255,255,0.6);
+  text-decoration: none;
+  font-size: 0.88rem;
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  transition: color 0.2s;
+}
+
+.back-link:hover { color: #fff; }
+
+.page-header h2 {
+  font-family: var(--font-display);
+  font-size: 1.3rem;
+  color: #fff;
+  font-weight: 700;
+}
+
+.fact-hero {
+  padding: 3rem 2rem 1rem;
+  max-width: 800px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.fact-hero p {
+  font-size: 0.8rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin-bottom: 0.5rem;
+}
+
+.fact-hero h1 {
+  font-family: var(--font-display);
+  font-size: clamp(2rem, 5vw, 3.2rem);
+  font-weight: 900;
+  line-height: 1.1;
+  margin-bottom: 1rem;
+}
+
+.fact-area {
+  max-width: 680px;
+  margin: 2rem auto 0;
+  padding: 0 2rem 5rem;
+  text-align: center;
+}
+
+.fact-box {
+  background: #fff;
+  border-radius: 16px;
+  padding: 2.5rem;
+  box-shadow: 0 4px 24px rgba(0,0,0,0.08);
+  margin-bottom: 2rem;
+  animation: fadeUp 0.5s ease both;
+}
+
+.fact-box h3 {
+  font-family: var(--font-display);
+  font-size: 1.4rem;
+  font-weight: 700;
+  margin-bottom: 1rem;
+  color: var(--text);
+}
+
+.fact-box p {
+  font-size: 1rem;
+  color: var(--muted);
+  line-height: 1.8;
+}
+
+.fact-badge {
+  display: inline-block;
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  padding: 0.3rem 0.9rem;
+  border-radius: 999px;
+  margin-bottom: 1rem;
+  color: #fff;
+}
+
+.next-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.8rem 2rem;
+  border-radius: 999px;
+  border: none;
+  font-family: var(--font-body);
+  font-size: 0.95rem;
+  font-weight: 500;
+  cursor: pointer;
+  color: #fff;
+  transition: opacity 0.2s, transform 0.15s;
+}
+
+.next-btn:hover { opacity: 0.88; transform: scale(1.03); }
+
+/* ── RESPONSIVE ── */
+@media (max-width: 700px) {
+  .hero-text { padding: 0 2rem; }
+  .cards-row { flex-direction: column; align-items: center; }
+  .card, .card.featured { width: 100%; max-width: 340px; min-height: unset; }
+}

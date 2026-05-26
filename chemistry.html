@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Chemistry Facts</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="page-header">
+    <a href="index.html" class="back-link">&#8592; Back</a>
+    <h2>Chemistry</h2>
+  </div>
+
+  <div class="fact-hero">
+    <p>Fun fact of the day</p>
+    <h1 style="color:#f97316">Chemistry</h1>
+  </div>
+
+  <div class="fact-area">
+    <div class="fact-box" id="fact-display">
+      <span class="fact-badge" style="background:#f97316">Chemistry</span>
+      <h3 id="fact-title">Loading...</h3>
+      <p id="fact-body"></p>
+    </div>
+    <button class="next-btn" style="background:#f97316" onclick="nextFact()">
+      Another fact &#8594;
+    </button>
+  </div>
+
+  <script>
+    const facts = [
+      { title: "Gold is almost completely indestructible", body: "Gold does not rust, corrode, or tarnish. It is so chemically stable that almost all the gold ever mined still exists today. Gold extracted by ancient Egyptians thousands of years ago may well be in jewellery right now." },
+      { title: "Water is the only substance found naturally in all three states on Earth", body: "On Earth, water naturally exists as a solid (ice), liquid (water), and gas (water vapour) within normal temperature ranges. Almost no other substance does this at everyday conditions — which is one reason water is so special for life." },
+      { title: "Helium was discovered in space before on Earth", body: "Helium was first detected in 1868 by studying the Sun's spectrum during a solar eclipse — 27 years before it was found on Earth. It was named after Helios, the Greek god of the Sun." },
+      { title: "Glass is technically an amorphous solid", body: "Glass is an amorphous solid — its molecules are arranged randomly like a liquid rather than in an ordered crystal structure. This is why glass doesn't have a sharp melting point; it gradually softens as temperature rises." },
+      { title: "A teaspoon of neutron star material would weigh 10 million tonnes", body: "Neutron stars are so dense that a teaspoon of their material would weigh around 10 million tonnes on Earth. Gravity has crushed protons and electrons together into neutrons, packing enormous mass into a tiny space." },
+      { title: "Oxygen is only the third most abundant element in the universe", body: "Hydrogen makes up about 75% of all normal matter in the universe, helium around 23%, and oxygen is third at roughly 1%. Oxygen feels abundant on Earth because life evolved specifically to use it." }
+    ];
+    let last = -1;
+    function nextFact() {
+      let i;
+      do { i = Math.floor(Math.random() * facts.length); } while (i === last && facts.length > 1);
+      last = i;
+      const box = document.getElementById('fact-display');
+      box.style.animation = 'none';
+      box.offsetHeight;
+      box.style.animation = 'fadeUp 0.5s ease both';
+      document.getElementById('fact-title').textContent = facts[i].title;
+      document.getElementById('fact-body').textContent = facts[i].body;
+    }
+    nextFact();
+  </script>
+</body>
+</html>

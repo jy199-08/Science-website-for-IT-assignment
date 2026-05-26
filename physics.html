@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Physics Facts</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="page-header">
+    <a href="index.html" class="back-link">&#8592; Back</a>
+    <h2>Physics</h2>
+  </div>
+
+  <div class="fact-hero">
+    <p>Fun fact of the day</p>
+    <h1 style="color:#3b82f6">Physics</h1>
+  </div>
+
+  <div class="fact-area">
+    <div class="fact-box" id="fact-display">
+      <span class="fact-badge" style="background:#3b82f6">Physics</span>
+      <h3 id="fact-title">Loading...</h3>
+      <p id="fact-body"></p>
+    </div>
+    <button class="next-btn" style="background:#3b82f6" onclick="nextFact()">
+      Another fact &#8594;
+    </button>
+  </div>
+
+  <script>
+    const facts = [
+      { title: "Light takes 8 minutes to reach Earth", body: "The Sun is about 150 million kilometres away. Light travels at 300,000 km/s — yet it still takes around 8 minutes and 20 seconds for sunlight to reach us. If the Sun suddenly switched off, we wouldn't notice for over 8 minutes." },
+      { title: "Time moves faster at higher altitudes", body: "Einstein's theory of relativity tells us that gravity slows down time. A clock on a mountain top ticks very slightly faster than one at sea level. GPS satellites have to correct for this effect constantly or they'd give wrong directions." },
+      { title: "A single bolt of lightning is hotter than the surface of the Sun", body: "The surface of the Sun is around 5,500°C. A lightning bolt can reach temperatures of about 30,000°C — roughly five times hotter. The intense heat causes surrounding air to expand rapidly, creating the sound we call thunder." },
+      { title: "Hot water can freeze faster than cold water", body: "Known as the Mpemba effect, hot water sometimes freezes faster than cold water under the same conditions. Scientists still debate exactly why — it may involve evaporation, dissolved gases, or convection currents." },
+      { title: "Sound cannot travel in space", body: "Sound is a pressure wave that needs a medium like air or water to travel through. In the vacuum of space there are almost no particles, so sound waves cannot propagate. Space is completely silent." },
+      { title: "There are more possible chess games than atoms in the universe", body: "The number of possible unique chess games is estimated at 10¹²⁰ — dwarfing the estimated 10⁸⁰ atoms in the observable universe. No two sufficiently long chess games need ever be identical." }
+    ];
+    let last = -1;
+    function nextFact() {
+      let i;
+      do { i = Math.floor(Math.random() * facts.length); } while (i === last && facts.length > 1);
+      last = i;
+      const box = document.getElementById('fact-display');
+      box.style.animation = 'none';
+      box.offsetHeight;
+      box.style.animation = 'fadeUp 0.5s ease both';
+      document.getElementById('fact-title').textContent = facts[i].title;
+      document.getElementById('fact-body').textContent = facts[i].body;
+    }
+    nextFact();
+  </script>
+</body>
+</html>
